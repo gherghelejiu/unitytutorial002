@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CarController : MonoBehaviour
 {
@@ -22,5 +23,14 @@ public class CarController : MonoBehaviour
 
         carSpeed += carSpeedGain * Time.deltaTime;
         transform.Translate(Vector3.forward * carSpeed * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("on trigger enter");
+        if (other.CompareTag("Obstacle"))
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 }
